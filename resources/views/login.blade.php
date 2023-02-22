@@ -35,7 +35,7 @@
             <div class="row mb-3 px-3">
               <button type="button" onclick="login()" class="btn btn-blue text-center">Login</button>
             </div>
-            <p>Belum ada akun? <a href=""><b>Buat Akun</a></b></p>
+            <p>Belum ada akun <a href=""><b>Buat Akun</a></b></p>
           </div>
         </div>
       </div>
