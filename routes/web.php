@@ -15,3 +15,4 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'login'])->name('login');
+Route::get('daftar', [HomeController::class, 'register'])->name('register');
