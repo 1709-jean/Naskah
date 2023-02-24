@@ -14,7 +14,7 @@
   <link href="{{asset('panel/css/style.css')}}" rel="stylesheet">
   <link href="{{asset('panel/plugins/sweetalert/css/sweetalert.css')}}" rel="stylesheet">
   <link href="{{asset('panel/plugins/toastr/css/toastr.min.css')}}" rel="stylesheet">
-  <link href="{{asset('home.css')}}" rel="stylesheet">
+  <link href="{{asset('masuk.css')}}" rel="stylesheet">
 
 </head>
 

@@ -16,3 +16,4 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'login'])->name('login');
 Route::get('daftar', [HomeController::class, 'register'])->name('register');
+Route::post('daftar/post-act', [HomeController::class, 'daftar_akun'])->name('daftar_akun');
