@@ -9,6 +9,18 @@
   <link rel="icon" type="image/png" sizes="16x16" href="../../asset/images/favicon.png">
   <link href="{{asset('panel/css/style.css')}}" rel="stylesheet">
   <link href="{{asset('masuk.css')}}" rel="stylesheet">
+  <link href="{{asset('panel/plugins/sweetalert/css/sweetalert.css')}}" rel="stylesheet">
+  <link href="{{asset('panel/plugins/toastr/css/toastr.min.css')}}" rel="stylesheet">
+
+  <script src="{{asset('panel/plugins/common/common.min.js')}}"></script>
+  <script src="{{asset('panel/js/custom.min.js')}}"></script>
+  <script src="{{asset('panel/js/settings.js')}}"></script>
+  <script src="{{asset('panel/js/gleek.js')}}"></script>
+  <script src="{{asset('panel/js/styleSwitcher.js')}}"></script>
+  <script src="{{asset('panel/plugins/toastr/js/toastr.min.js')}}"></script>
+  <script src="{{asset('panel/plugins/toastr/js/toastr.init.js')}}"></script>
+  <script src="{{asset('panel/plugins/sweetalert/js/sweetalert.min.js')}}"></script>
+  <script src="{{asset('panel/plugins/sweetalert/js/sweetalert.init.js')}}"></script>
 
 </head>
 
@@ -42,6 +54,76 @@
     </div>
   </div>
 </body>
+
+<script type="text/javascript">
+  function login() {
+    var email = $('#email').val();
+    var password = $('#password').val();
+    $.ajax({
+      url: "{{route('ceklogin')}}",
+      type: 'POST',
+      data: {
+        '_method': 'POST',
+        '_token': '{{ csrf_token() }}',
+        'email': email,
+        'password': password
+      },
+      success: function(response) {
+        if (response.masuk_admin) {
+          sweetAlert({
+            type: 'success',
+            title: 'Selamat Datang',
+            showConfirmButton: false,
+            timer: 10
+          }, function() {
+            window.location = "{{route('dashboard_admin')}}";
+          });
+        }
+        if (response.masuk_user) {
+          sweetAlert({
+            type: 'success',
+            title: 'Selamat Datang',
+            showConfirmButton: false,
+            timer: 1200
+          }, function() {
+            window.location = "{{route('postingan_saya')}}";
+          })
+        }
+
+        if (response.notmasuk) {
+          toastr.error("Login gagal", "Email/Password tidak sesuai", {
+            timeOut: 5e3,
+            closeButton: !0,
+            debug: !1,
+            newestOnTop: !0,
+            progressBar: !0,
+            positionClass: "toast-top-right",
+            preventDuplicates: !0,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+            tapToDismiss: !1
+          })
+        }
+        if (response.kosong) {
+          sweetAlert({
+            icon: "warning",
+            type: "warning",
+            title: 'Anda belum memasukkan Email dan Password anda.',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      }
+    });
+  }
+</script>
+
 
 @include('page/layout/notif')
 
