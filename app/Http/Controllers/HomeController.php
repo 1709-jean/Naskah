@@ -46,4 +46,48 @@ class HomeController extends Controller
     {
         return view('register');
     }
+
+    public function daftar_akun(Request $request)
+    {
+        $cek = User::where('email', $request->email)->first();
+        if ($cek == NULL) {
+            if ($request->hasFile('foto')) {
+                $customMessages = [
+                    'required' => 'Email harus di isi',
+                    'min' => 'Nomor Handphone minimal 10 angka',
+                    'email' => 'Harus dalam format Email',
+                ];
+                $validate = [
+                    'email' => 'required|email',
+                    'telepon' => 'required|min:10',
+                ];
+                $this->validate($request, $validate, $customMessages);
+                $ambil = $request->file('foto');
+                $name = $ambil->getClientOriginalName();
+                $namaFileBaru = uniqid();
+                $namaFileBaru .= $name;
+                $ambil->move(\base_path() . "/public/ktp", $namaFileBaru);
+                $user = new User();
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->password = hash::make($request->password);
+                $user->level = 'User';
+                $user->save();
+                DB::table('biodata')->insert([
+                    'id_user' => $user->id,
+                    'nik' => $request->nik,
+                    'telepon' => $request->telepon,
+                    'ktp' => $namaFileBaru,
+                ]);
+            }
+        } else {
+            return back()->with('sama', '-');
+        }
+        return redirect(route('login'))->with('add', 'Akun berhasil terdaftar. Silahkan login sesuai Email dan Password yang kamu daftarkan');
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
 }
