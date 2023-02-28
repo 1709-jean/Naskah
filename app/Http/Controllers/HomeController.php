@@ -83,7 +83,7 @@ class HomeController extends Controller
         } else {
             return back()->with('sama', '-');
         }
-        return redirect(route('login'))->with('add', 'Akun berhasil terdaftar. Silahkan login sesuai Email dan Password yang kamu daftarkan');
+        return redirect(route('login'))->with('add', 'Akun berhasil terdaftar. Silahkan login sesuai Email dan Password yang didaftarkan');
     }
     public function logout()
     {

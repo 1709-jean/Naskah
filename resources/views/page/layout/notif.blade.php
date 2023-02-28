@@ -64,25 +64,3 @@
   })
 </script>
 @endif
-@if(session('add_kegiatan'))
-<script type="text/javascript">
-  sweetAlert({
-    title: "Data Berhasil",
-    text: "Kegiatan di tambahkan, menunggu validasi",
-    type: "success",
-    closeOnConfirm: false,
-    showLoaderOnConfirm: true,
-  });
-</script>
-@endif
-@if(session('up_kegiatan'))
-<script type="text/javascript">
-  sweetAlert({
-    title: "Data Berhasil",
-    text: "Kegiatan di Ubah, silahkan tunggu validasi",
-    type: "success",
-    closeOnConfirm: false,
-    showLoaderOnConfirm: true,
-  });
-</script>
-@endif
