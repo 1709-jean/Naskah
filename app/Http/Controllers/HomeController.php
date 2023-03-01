@@ -90,4 +90,73 @@ class HomeController extends Controller
         Auth::logout();
         return redirect('/');
     }
+    public function postingan(Request $request, $tipe, $kategori)
+    {
+        if (empty($request->keyword)) {
+            if ($tipe == "semua" and $kategori == "semua") {
+                $data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
+                    ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                    ->where('postingan.status_postingan', 'true')
+                    ->orderBy('postingan.tanggal_berita', 'DESC')
+                    ->get();
+            } elseif ($tipe == "semua" and $kategori !== "semua") {
+                $data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
+                    ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                    ->where('kategori.nama_kategori', $kategori)
+                    ->where('postingan.status_postingan', 'true')
+                    ->orderBy('postingan.tanggal_berita', 'DESC')
+                    ->get();
+            } elseif ($tipe !== "semua" and $kategori == "semua") {
+                $data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
+                    ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                    ->where('postingan.jenis_berita', $tipe)
+                    ->where('postingan.status_postingan', 'true')
+                    ->orderBy('postingan.tanggal_berita', 'DESC')
+                    ->get();
+            } elseif ($tipe !== "semua" and $kategori !== "semua") {
+                $data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
+                    ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                    ->where('postingan.jenis_berita', $tipe)
+                    ->where('kategori.nama_kategori', $kategori)
+                    ->where('postingan.status_postingan', 'true')
+                    ->orderBy('postingan.tanggal_berita', 'DESC')
+                    ->get();
+            }
+        } else {
+            if ($tipe == "semua" and $kategori == "semua") {
+                $data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
+                    ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                    ->where('postingan.status_postingan', 'true')
+                    ->where('postingan.kode', $request->keyword)
+                    ->orderBy('postingan.tanggal_berita', 'DESC')
+                    ->get();
+            } elseif ($tipe == "semua" and $kategori !== "semua") {
+                $data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
+                    ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                    ->where('kategori.nama_kategori', $kategori)
+                    ->where('postingan.status_postingan', 'true')
+                    ->where('postingan.kode', $request->keyword)
+                    ->orderBy('postingan.tanggal_berita', 'DESC')
+                    ->get();
+            } elseif ($tipe !== "semua" and $kategori == "semua") {
+                $data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
+                    ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                    ->where('postingan.jenis_berita', $tipe)
+                    ->where('postingan.status_postingan', 'true')
+                    ->where('postingan.kode', $request->keyword)
+                    ->orderBy('postingan.tanggal_berita', 'DESC')
+                    ->get();
+            } elseif ($tipe !== "semua" and $kategori !== "semua") {
+                $data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
+                    ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                    ->where('postingan.jenis_berita', $tipe)
+                    ->where('kategori.nama_kategori', $kategori)
+                    ->where('postingan.status_postingan', 'true')
+                    ->where('postingan.kode', $request->keyword)
+                    ->orderBy('postingan.tanggal_berita', 'DESC')
+                    ->get();
+            }
+        }
+        return view('page.home.index', compact('data', 'tipe'));
+    }
 }
