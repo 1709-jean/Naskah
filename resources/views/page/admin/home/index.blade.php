@@ -7,7 +7,7 @@
   <div class="card-content">
     <div class="alert alert-primary alert-dismissible fade show">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-      </button> <strong> Halo!</strong> Selamat Datang, anda login sebagai Admin.
+      </button> <strong> Halo, Admin!</strong>
     </div>
   </div>
   <div class="row">

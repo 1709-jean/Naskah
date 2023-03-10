@@ -70,46 +70,39 @@
       },
       success: function(response) {
         if (response.masuk_admin) {
-          sweetAlert({
-            type: 'success',
-            title: 'Selamat Datang',
-            showConfirmButton: false,
-            timer: 10
-          }, function() {
-            window.location = "{{route('dashboard_admin')}}";
-          });
+          window.location = "{{route('dashboard_admin')}}";
         }
         if (response.masuk_user) {
-          sweetAlert({
-            type: 'success',
-            title: 'Selamat Datang',
-            showConfirmButton: false,
-            timer: 1200
-          }, function() {
-            window.location = "{{route('postingan_saya')}}";
-          })
+          window.location = "{{route('postingan_saya')}}";
         }
 
         if (response.notmasuk) {
-          toastr.error("Login gagal", "Email/Password tidak sesuai", {
-            timeOut: 5e3,
-            closeButton: !0,
-            debug: !1,
-            newestOnTop: !0,
-            progressBar: !0,
-            positionClass: "toast-top-right",
-            preventDuplicates: !0,
-            onclick: null,
-            showDuration: "300",
-            hideDuration: "1000",
-            extendedTimeOut: "1000",
-            showEasing: "swing",
-            hideEasing: "linear",
-            showMethod: "fadeIn",
-            hideMethod: "fadeOut",
-            tapToDismiss: !1
+          sweetAlert({
+            icon: "warning",
+            type: "warning",
+            title: 'Login gagal',
+            text: 'Email/Password tidak sesuai',
+            showConfirmButton: false,
+            timer: 2000
           })
         }
+        // timeOut: 5e3,
+        // closeButton: !0,
+        // debug: !1,
+        // newestOnTop: !0,
+        // progressBar: !0,
+        // positionClass: "toast-top-right",
+        // preventDuplicates: !0,
+        // onclick: null,
+        // showDuration: "300",
+        // hideDuration: "1000",
+        // extendedTimeOut: "1000",
+        // showEasing: "swing",
+        // hideEasing: "linear",
+        // showMethod: "fadeIn",
+        // hideMethod: "fadeOut",
+        // tapToDismiss: !1
+
         if (response.kosong) {
           sweetAlert({
             icon: "warning",
@@ -124,7 +117,19 @@
   }
 </script>
 
+@if(session('berhasil_register'))
+<script>
+  sweetAlert({
+    icon: "success",
+    type: "success",
+    title: 'Berhasil Register.',
+    text: "{{session('berhasil_register')}}",
+    showConfirmButton: false,
+    timer: 2000
+  });
+</script>
+@endif
 
-@include('page/layout/notif')
+<!--@include('page/layout/notif')-->
 
 </html>

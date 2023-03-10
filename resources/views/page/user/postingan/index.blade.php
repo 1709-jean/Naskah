@@ -8,8 +8,8 @@
     <div class="card">
       <div class="card-body">
         <div class="card-title">
-          <h4>Data Postingan Saya
-            <a href="{route('tambah_postingan')}}" class="btn btn-primary btn-sm" style="float: right;">
+          <h4>Daftar Postingan Saya
+            <a href="{{route('tambah_postingan')}}" class="btn btn-primary" style="float: right;">
               Tambah Postingan
             </a>
           </h4>
@@ -51,19 +51,21 @@
                 <td>{{$dt->detail_berita}}</td>
                 <td>{{$gambar}}</td>
                 <td align="center">
-                  <!-- @if($dt->status_postingan=="true")
-                                    <span class="badge bg-primary text-white">Aktif</span>
-                                    @elseif($dt->status_postingan=="clear")
-                                    <span class="badge bg-success text-white">Selesai</span>
-                                    @else
-                                    <span class="badge bg-danger text-white">Postingan Melanggar <br> Aturan !</span>
-                                    @endif-->
+                  @if($dt->status_postingan=="true")
+                  <span class="badge bg-primary text-white">Aktif</span>
+                  @elseif($dt->status_postingan=="clear")
+                  <span class="badge bg-success text-white">Selesai</span>
+                  @elseif($dt->status_postingan=="false")
+                  <span class="badge bg-danger text-white">Postingan Melanggar <br> Aturan !</span>
+                  @else
+                  <span class="badge bg-warning text-white">Berita telah Anda <br> selesaikan secara mandiri</span>
+                  @endif
                 </td>
                 <td>
-                  <a href="{{route('ubah_postingan',$dt->id_postingan)}}" class="btn btn-sm btn-success text-white">
+                  <a href="#" class="btn btn-sm btn-success text-white">
                     <i class="fa fa-edit"></i>
                   </a>
-                  <a href="{{route('delete_postingan',$dt->id_postingan)}}" class="btn btn-sm btn-danger text-white" onclick="return confirm('Apakah anda yakin menghapus Postingan?')">
+                  <a href="#" class="btn btn-sm btn-danger text-white" onclick="return confirm('Apakah anda yakin menghapus Postingan?')">
                     <i class="fa fa-trash"></i>
                   </a>
                 </td>

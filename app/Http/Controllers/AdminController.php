@@ -34,4 +34,25 @@ class AdminController extends Controller
         $data['chart_data'] = json_encode($data);
         return view('page.admin.home.index', $data, compact('user', 'lost', 'found'));
     }
+    public function data_kategori()
+    {
+        $data = DB::table('kategori')->where('nama_kategori', '!=', 'HRD')->get();
+        return view('page/admin/kategori/index', compact('data'));
+    }
+    public function addkategori(Request $request)
+    {
+        foreach ($request->nama_kategori as $key => $value) {
+            DB::table('kategori')->insert([
+                'nama_kategori' => $request->nama_kategori[$key],
+            ]);
+        }
+        return redirect()->back()->with('add', 'Kategori Berhasil di tambahkan');
+    }
+
+    public function data_user()
+    {
+        $data = user::join('biodata', 'biodata.id_user', 'users.id')
+            ->get();
+        return view('page/admin/user/index', compact('data'));
+    }
 }

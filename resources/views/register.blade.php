@@ -115,7 +115,7 @@
   sweetAlert({
     icon: 'warning',
     type: 'warning',
-    title: 'Email Telah Digunakan',
+    title: 'Emaill/NIK Telah Digunakan',
     showConfirmButton: false,
     timer: 1500
   });

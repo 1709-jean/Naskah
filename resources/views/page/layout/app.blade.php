@@ -51,9 +51,9 @@
               {{implode(" ", array_slice(explode(" ", Auth::user()->name),0,1))}}
             </h3>
           </span>
-          <!--  <span class="brand-title text-center">
-                        <h3 class="text text-white">{{Auth::user()->name}}</h3>
-                    </span> -->
+          <span class="brand-title text-center">
+            <h3 class="text text-white">{{Auth::user()->name}}</h3>
+          </span>
         </a>
       </div>
 
@@ -115,7 +115,7 @@
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 </body>
 
-@include('page/layout/notif')
+<!--@include('page/layout/notif')-->
 @include('page/layout/customfitur')
 
 </html>

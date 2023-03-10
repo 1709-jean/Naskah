@@ -24,7 +24,21 @@ Route::post('daftar/post-act', [HomeController::class, 'daftar_akun'])->name('da
 
 Route::get('logout', [HomeController::class, 'logout'])->name('logout');
 
-Route::get('page/dashboard-admin', [AdminController::class, 'dashboard_admin'])->name('dashboard_admin');
-Route::get('page/postingan-saya', [UserController::class, 'postingan_saya'])->name('postingan_saya');
 
+//Admin
+Route::get('page/dashboard-admin', [AdminController::class, 'dashboard_admin'])->name('dashboard_admin');
+Route::get('page/data-kategori', [AdminController::class, 'data_kategori'])->name('data_kategori');
+Route::get('page/data-user', [AdminController::class, 'data_user'])->name('data_user');
+Route::post('page/data-kategori/tambah', [AdminController::class, 'addkategori'])->name('addkategori');
+Route::post('page/data-kategori/update/{id_kategori}', [AdminController::class, 'updatekategori'])->name('updatekategori');
+
+
+//User
+Route::get('page/postingan-saya', [UserController::class, 'postingan_saya'])->name('postingan_saya');
 Route::post('page/profil-admin/update', [UserController::class, 'ubah_user'])->name('ubah_user');
+Route::get('page/form-tambah-postingan', [UserController::class, 'tambah_postingan'])->name('tambah_postingan');
+Route::post('page/form-tambah-postingan/post-act-postingan', [UserController::class, 'add_postingan'])->name('add_postingan');
+
+
+// Home
+Route::get('postingan/keyword/{tipe}-{kategori}', [HomeController::class, 'postingan'])->name('postingan');

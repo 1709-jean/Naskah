@@ -18,7 +18,7 @@
 
       <!-- <li class="nav-label">Semua Postingan</li> -->
       <li>
-        <a href="#" aria-expanded="false">
+        <a href="{{route('postingan',['tipe'=>'semua','kategori'=>'semua'])}}" aria-expanded="false">
           <i class="fa fa-file-o"></i><span class="nav-text">Semua Postingan</span>
         </a>
       </li>
@@ -30,12 +30,12 @@
         </a>
         <ul aria-expanded="false">
           <li>
-            <a href="#">
+            <a href="{{route('data_user')}}">
               Data User
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{route('data_kategori')}}">
               Data Kategori
             </a>
           </li>
@@ -45,13 +45,13 @@
 
       <!--<li class="nav-label">Postingan Saya | Unggah Berita</li>-->
       <li>
-        <a href="#" aria-expanded="false">
+        <a href="{{route('postingan_saya')}}" aria-expanded="false">
           <i class="icon-note menu-icon"></i><span class="nav-text">Postingan Saya</span>
         </a>
       </li>
 
       <li>
-        <a href="#" aria-expanded="false">
+        <a href="{{route('postingan',['tipe'=>'semua','kategori'=>'semua'])}}" aria-expanded="false">
           <i class="fa fa-file-o"></i><span class="nav-text">Semua Postingan</span>
         </a>
       </li>

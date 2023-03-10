@@ -49,19 +49,25 @@ class HomeController extends Controller
 
     public function daftar_akun(Request $request)
     {
-        $cek = User::where('email', $request->email)->first();
+        $cek = User::join('biodata', 'biodata.id_user', '=', 'users.id')
+            ->where('biodata.nik', $request->nik)
+            ->orWhere('users.email', $request->email)
+            ->first();
         if ($cek == NULL) {
             if ($request->hasFile('foto')) {
-                $customMessages = [
-                    'required' => 'Email harus di isi',
-                    'min' => 'Nomor Handphone minimal 10 angka',
-                    'email' => 'Harus dalam format Email',
-                ];
-                $validate = [
-                    'email' => 'required|email',
-                    'telepon' => 'required|min:10',
-                ];
-                $this->validate($request, $validate, $customMessages);
+                $request->validate(
+                    [
+                        'email' => 'required|email',
+                        'telepon' => 'required|min:10',
+                        'nik' => 'required|min:16|max:16',
+                    ],
+                    [
+                        'email.email' => 'Input berupa format Email',
+                        'telepon.min' => 'Nomor Handphone minimal 10 angka',
+                        'nik.min' => 'NIK minimal dan maksimal 16 angka',
+                        'nik.max' => 'NIK minimal dan maksimal 16 angka',
+                    ]
+                );
                 $ambil = $request->file('foto');
                 $name = $ambil->getClientOriginalName();
                 $namaFileBaru = uniqid();
@@ -83,16 +89,17 @@ class HomeController extends Controller
         } else {
             return back()->with('sama', '-');
         }
-        return redirect(route('login'))->with('add', 'Akun berhasil terdaftar. Silahkan login sesuai Email dan Password yang didaftarkan');
+        return redirect(route('login'))->with('berhasil_register', 'Akun berhasil terdaftar. Silahkan Login dan Password yang didaftarkan');
     }
     public function logout()
     {
         Auth::logout();
         return redirect('/');
     }
+
     public function postingan(Request $request, $tipe, $kategori)
     {
-        if (empty($request->keyword)) {
+        if (empty($request->tanggal)) {
             if ($tipe == "semua" and $kategori == "semua") {
                 $data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
                     ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
@@ -127,7 +134,7 @@ class HomeController extends Controller
                 $data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
                     ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
                     ->where('postingan.status_postingan', 'true')
-                    ->where('postingan.kode', $request->keyword)
+                    ->where('postingan.tanggal_berita', $request->tanggal)
                     ->orderBy('postingan.tanggal_berita', 'DESC')
                     ->get();
             } elseif ($tipe == "semua" and $kategori !== "semua") {
@@ -135,7 +142,7 @@ class HomeController extends Controller
                     ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
                     ->where('kategori.nama_kategori', $kategori)
                     ->where('postingan.status_postingan', 'true')
-                    ->where('postingan.kode', $request->keyword)
+                    ->where('postingan.tanggal_berita', $request->tanggal)
                     ->orderBy('postingan.tanggal_berita', 'DESC')
                     ->get();
             } elseif ($tipe !== "semua" and $kategori == "semua") {
@@ -143,7 +150,7 @@ class HomeController extends Controller
                     ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
                     ->where('postingan.jenis_berita', $tipe)
                     ->where('postingan.status_postingan', 'true')
-                    ->where('postingan.kode', $request->keyword)
+                    ->where('postingan.tanggal_berita', $request->tanggal)
                     ->orderBy('postingan.tanggal_berita', 'DESC')
                     ->get();
             } elseif ($tipe !== "semua" and $kategori !== "semua") {
@@ -152,11 +159,11 @@ class HomeController extends Controller
                     ->where('postingan.jenis_berita', $tipe)
                     ->where('kategori.nama_kategori', $kategori)
                     ->where('postingan.status_postingan', 'true')
-                    ->where('postingan.kode', $request->keyword)
+                    ->where('postingan.tanggal_berita', $request->tanggal)
                     ->orderBy('postingan.tanggal_berita', 'DESC')
                     ->get();
             }
         }
-        return view('page.home.index', compact('data', 'tipe'));
+        return view('page.home.index', compact('data', 'tipe', 'kategori'));
     }
 }

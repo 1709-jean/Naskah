@@ -13,12 +13,13 @@
                 </div>
                 <div class="header-left">
                     <div class="input-group icons">
-                        <select class="form-control" id="tipe" name="tipe" aria-label="Search Dashboard">\
+                        <select class="form-control" id="tipe" name="tipe" aria-label="Search Dashboard">
                             <option class="semua">Jenis Berita</option>
                             <option value="semua">Semua</option>
                             <option value="lost">Lost</option>
                             <option value="found">Found</option>
                         </select>
+
                         <select class="form-control ml-3" id="kategori" name="kategori" aria-label="Search Dashboard">
                             <option value="semua">Kategori Barang</option>
                             <option value="semua">Semua</option>
@@ -26,6 +27,10 @@
                             <option value="{{$namak->nama_kategori}}">{{$namak->nama_kategori}}</option>
                             @endforeach
                         </select>
+
+                        <input class="ml-3" type="date" id="date" name="date" lass="ml-3" aria-label="Search Dashboard">
+                        </input>
+
                     </div>
                 </div>
                 <div class="header-right">
