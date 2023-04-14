@@ -35,7 +35,7 @@
             "Tests\\": "tests/"
         },
         "files": [
-            "app/Helpers/TanggalIndonesia.php"
+            "app/Helpers/Tgl.php"
         ]
     },
     "scripts": {

@@ -1,60 +1,105 @@
 <!DOCTYPE html>
-<html class="h-100" lang="en">
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title> LOGIN LOST AND FOUND</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="icon" type="image/png" sizes="16x16" href="../../asset/images/favicon.png">
-  <link href="{{asset('panel/css/style.css')}}" rel="stylesheet">
-  <link href="{{asset('masuk.css')}}" rel="stylesheet">
-  <link href="{{asset('panel/plugins/sweetalert/css/sweetalert.css')}}" rel="stylesheet">
-  <link href="{{asset('panel/plugins/toastr/css/toastr.min.css')}}" rel="stylesheet">
 
-  <script src="{{asset('panel/plugins/common/common.min.js')}}"></script>
-  <script src="{{asset('panel/js/custom.min.js')}}"></script>
-  <script src="{{asset('panel/js/settings.js')}}"></script>
-  <script src="{{asset('panel/js/gleek.js')}}"></script>
-  <script src="{{asset('panel/js/styleSwitcher.js')}}"></script>
-  <script src="{{asset('panel/plugins/toastr/js/toastr.min.js')}}"></script>
-  <script src="{{asset('panel/plugins/toastr/js/toastr.init.js')}}"></script>
-  <script src="{{asset('panel/plugins/sweetalert/js/sweetalert.min.js')}}"></script>
-  <script src="{{asset('panel/plugins/sweetalert/js/sweetalert.init.js')}}"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="{{ asset('lf.png') }}">
+
+  <title>Login Lost And Found</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="{{ asset('sbadmin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="{{asset('sbadmin/plugins/sweetalert/css/sweetalert.css')}}" rel="stylesheet">
+  <!-- <link href="{{asset('sbadmin/plugins/toastr/css/toastr.min.css')}}" rel="stylesheet"> -->
+  <link href="{{asset('home.css')}}" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="{{ asset('sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 </head>
 
-<body class="h-100">
-  <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto mt-5">
-    <div class="card card0 border-0">
-      <div class="row d-flex">
-        <div class="col-lg-6" style="background-image: url('{{asset('login.gif')}}');background-size: 100% 100%">
-        </div>
-        <div class="col-lg-6">
-          <div class="card2 card border-0 px-4 py-5">
-            <div class="row px-3">
-              <label class="mb-1">
-                <h6 class="mb-0 text-sm">Email</h6>
-              </label>
-              <input class="mb-4" type="email" autocomplete="off" autofocus="" id="email" placeholder="Masukkan Email">
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url('{{asset('login.gif')}}');background-size: 100% 100%"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Login Lost And Found</h1>
+                  </div>
+                  <form class="user">
+                    <div class="form-group">
+                      <input type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" id="password" placeholder="Password">
+                    </div>
+
+                    <!-- <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
+                                        </div> -->
+                    <button type="button" onclick="login()" class="btn btn-primary btn-user btn-block">
+                      Login
+                    </button>
+                    <hr>
+                  </form>
+                  <hr>
+                  <div class="text-center">
+                    <!--  <a class="small" href="forgot-password.html">Forgot Password?</a> -->
+                  </div>
+                  <div class="text-center">
+                    Anda belum mempunyai akun?<a class="small" href="{{route('register')}}"> Buat Akun</a>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="row px-3">
-              <label class="mb-1">
-                <h6 class="mb-0 text-sm">Password</h6>
-              </label>
-              <input type="password" id="password" autocomplete="off" name="password" placeholder="Masukkan Password">
-            </div>
-            <div class="row mb-3 px-3">
-              <button type="button" onclick="login()" class="btn btn-blue text-center">Login</button>
-            </div>
-            <p>Belum ada akun ?<a href="{{route('register')}}"><b>Buat Akun</a></b></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</body>
 
+  <!-- Bootstrap core JavaScript-->
+  <script src="{{ asset('sbadmin/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{{ asset('sbadmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{{ asset('sbadmin/js/sb-admin-2.min.js') }}"></script>
+  <script src="{{asset('sbadmin/plugins/common/common.min.js')}}"></script>
+  <script src="{{asset('sbadmin/js/custom.min.js')}}"></script>
+  <script src="{{asset('sbadmin/js/settings.js')}}"></script>
+  <script src="{{asset('sbadmin/js/gleek.js')}}"></script>
+  <script src="{{asset('sbadmin/js/styleSwitcher.js')}}"></script>
+  <!-- <script src="{{asset('sbadmin/plugins/toastr/js/toastr.min.js')}}"></script>
+  <script src="{{asset('sbadmin/plugins/toastr/js/toastr.init.js')}}"></script> -->
+  <script src="{{asset('sbadmin/plugins/sweetalert/js/sweetalert.min.js')}}"></script>
+  <script src="{{asset('sbadmin/plugins/sweetalert/js/sweetalert.init.js')}}"></script>
+
+</body>
 <script type="text/javascript">
   function login() {
     var email = $('#email').val();
@@ -70,46 +115,41 @@
       },
       success: function(response) {
         if (response.masuk_admin) {
-          window.location = "{{route('dashboard_admin')}}";
+          sweetAlert({
+            type: 'success',
+            title: '',
+            showConfirmButton: false,
+            timer: 10
+          }, function() {
+            window.location = "{{route('dashboard_admin')}}";
+          });
         }
         if (response.masuk_user) {
-          window.location = "{{route('postingan_saya')}}";
-        }
-
-        if (response.notmasuk) {
           sweetAlert({
-            icon: "warning",
-            type: "warning",
-            title: 'Login gagal',
-            text: 'Email/Password tidak sesuai',
+            type: 'success',
+            title: '',
             showConfirmButton: false,
-            timer: 2000
+            timer: 10
+          }, function() {
+            window.location = "{{route('postingan_saya')}}";
           })
         }
-        // timeOut: 5e3,
-        // closeButton: !0,
-        // debug: !1,
-        // newestOnTop: !0,
-        // progressBar: !0,
-        // positionClass: "toast-top-right",
-        // preventDuplicates: !0,
-        // onclick: null,
-        // showDuration: "300",
-        // hideDuration: "1000",
-        // extendedTimeOut: "1000",
-        // showEasing: "swing",
-        // hideEasing: "linear",
-        // showMethod: "fadeIn",
-        // hideMethod: "fadeOut",
-        // tapToDismiss: !1
-
+        if (response.notmasuk) {
+          sweetAlert({
+            type: "warning",
+            title: '',
+            text: 'Email atau Password tidak sesuai',
+            showConfirmButton: false,
+            timer: 1000
+          });
+        }
         if (response.kosong) {
           sweetAlert({
-            icon: "warning",
             type: "warning",
-            title: 'Anda belum memasukkan Email dan Password anda.',
+            title: '',
+            text: 'Anda belum memasukkan email dan password',
             showConfirmButton: false,
-            timer: 1500
+            timer: 500
           });
         }
       }
@@ -125,11 +165,11 @@
     title: 'Berhasil Register.',
     text: "{{session('berhasil_register')}}",
     showConfirmButton: false,
-    timer: 2000
+    timer: 1500
   });
 </script>
 @endif
 
-<!--@include('page/layout/notif')-->
+</body>
 
 </html>
