@@ -76,7 +76,7 @@
                                 <b>Gambar</b>
                                 <br>
                                 *Opsional, jika anda memiliki gambar untuk memperkuat bukti kepemilikan
-                                <input type="file" class="form-control" name="foto">
+                                <input type="file" class="form-control" accept=".jpg, .jpeg, .png" name="foto">
                             </div>
                         </div>
                         <div class="form-group row">

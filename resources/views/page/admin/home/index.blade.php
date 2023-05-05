@@ -6,12 +6,11 @@
 <div class="container-fluid mt-3">
     <div class="card-content">
         <div class="alert alert-primary alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-            </button> <strong> Halo!</strong> Selamat Datang, anda login sebagai Admin.
+            <strong> Halo!</strong> Selamat Datang, anda login sebagai Admin.
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <div class="card card-widget">
                 <div class="card-body bg-warning">
                     <div class="media">
@@ -24,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             <div class="card card-widget">
                 <div class="card-body bg-danger">
                     <div class="media">
@@ -37,7 +36,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+
+        <div class="col-md-2">
             <div class="card card-widget">
                 <div class="card-body gradient-4">
                     <div class="media">

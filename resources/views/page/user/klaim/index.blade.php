@@ -60,13 +60,13 @@
                                     <a href="{{route('ubah_klaim',$dt->id_klaim)}}" class="btn btn-sm btn-success text-white">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a href="#" class="btn btn-sm btn-primary text-white">
+                                    <!-- <a href="#" class="btn btn-sm btn-primary text-white">
                                         <i class="fa fa-eye"></i>
-                                    </a>
+                                    </a> -->
                                     @else
-                                    <a href="#" class="btn btn-sm btn-primary text-white">
+                                    <!-- <a href="#" class="btn btn-sm btn-primary text-white">
                                         <i class="fa fa-eye"></i>
-                                    </a>
+                                    </a> -->
                                     @endif
                                 </td>
                             </tr>

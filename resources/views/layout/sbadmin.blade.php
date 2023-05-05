@@ -54,18 +54,24 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{route('postingan_report')}}" aria-expanded="false" class="nav-link">
-                    <i class="fa fa-flag"></i><span class="nav-text">Laporan Postingan</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
                 <a href="{{route('postingan',['tipe'=>'semua','kategori'=>'semua'])}}" aria-expanded="false" class="nav-link">
                     <i class="fa fa-home"></i><span class="nav-text">Semua Postingan</span>
                 </a>
             </li>
 
             <li class="nav-item">
+                <a href="{{route('postingan_report')}}" aria-expanded="false" class="nav-link">
+                    <i class="fa fa-flag"></i><span class="nav-text">Laporan Postingan</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{route('data_kategori')}}" aria-expanded="false" class="nav-link">
+                    <i class="fa fa-columns"></i><span class="nav-text">Data Kategori</span>
+                </a>
+            </li>
+
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-database"></i>
                     <span>Data Master</span>
@@ -76,7 +82,7 @@
                         <a class="collapse-item" href="{{route('data_kategori')}}">Data Kategori</a>
                     </div>
                 </div>
-            </li>
+            </li> -->
 
             @else
 
@@ -331,7 +337,7 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 </body>
 
-@include('layout/customfitur')
+@include('layout/informasi')
 
 <script>
     function buka() {

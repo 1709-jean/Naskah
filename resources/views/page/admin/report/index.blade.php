@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    <h4>Postingan | Berita yang di Laporkan oleh User
+                    <h4>Postingan yang di Laporkan oleh User
                     </h4>
                 </div>
                 <div class="table-responsive">
@@ -18,21 +18,20 @@
                                 <th>No. </th>
                                 <th>Jenis Berita</th>
                                 <th>Kategori</th>
-                                <th>Detail Berita</th>
                                 <th>Jumlah Melaporkan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             @foreach($data as $dt)
-                           <!--  <?php  
-                            $jml = DB::table('postingan')->join('users','users.id','=','postingan.id_user')
-                            ->join('kategori','kategori.id_kategori','=','postingan.id_kategori')
-                            ->join('lapor','lapor.id_postingan','=','postingan.id_postingan')
-                            ->where('lapor.id_postingan',$dt->id_postingan)
-                            ->count();
-                            ?> -->
+                            <?php
+                            $jml = DB::table('postingan')->join('users', 'users.id', '=', 'postingan.id_user')
+                                ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                                ->join('lapor', 'lapor.id_postingan', '=', 'postingan.id_postingan')
+                                ->where('lapor.id_postingan', $dt->id_postingan)
+                                ->count();
+                            ?>
                             <tr>
                                 <td>{{$no}}.</td>
                                 <td align="center">
@@ -43,7 +42,6 @@
                                     @endif
                                 </td>
                                 <td>{{$dt->nama_kategori}}</td>
-                                <td>{{$dt->detail_berita}}</td>
                                 <td>{{$dt->jml}} melaporkan</td>
                                 <td>
                                     <a href="{{route('postingan',['tipe'=>$dt->jenis_berita,'kategori'=>$dt->nama_kategori])}}?keyword={{$dt->kode}}" class="btn btn-sm btn-primary text-white">
@@ -51,8 +49,8 @@
                                     </a>
                                 </td>
                             </tr>
-                            @endforeach
                             <?php $no++ ?>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -63,4 +61,3 @@
     <!-- /# column -->
 </div>
 @endsection
-

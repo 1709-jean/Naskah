@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <a href="{{asset('ktp')}}/{{$dt->ktp}}" target="_blank"><img src="{{asset('ktp')}}/{{$dt->ktp}}" class="img-fluid" width="1000" height="1000"></a>
+                                <a href="{{asset('ktp')}}/{{$dt->ktp}}" target="_blank"><img src="{{asset('ktp')}}/{{$dt->ktp}}" class="img-fluid" width="500" height="500"></a>
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <a href="{{asset('klaim')}}/{{$dt->gambar_klaim}}" target="_blank"><img src="{{asset('klaim')}}/{{$dt->gambar_klaim}}" class="img-fluid" width="1000" height="1000"></a>
+                                <a href="{{asset('klaim')}}/{{$dt->gambar_klaim}}" target="_blank"><img src="{{asset('klaim')}}/{{$dt->gambar_klaim}}" class="img-fluid" width="500" height="500"></a>
                             </div>
                         </div>
 

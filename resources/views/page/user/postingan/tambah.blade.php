@@ -44,7 +44,7 @@
                                     <strong> <i class="fa fa-info"></i> Panduan pemberitahuan pertanyaan validasi kepemilikan</strong>
                                     <br>
                                     <ol type="1">
-                                        <li>1. Berikan pertanyaan yang spesifik terkait barang yang ditemukan</li>
+                                        <li> Berikan pertanyaan yang spesifik terkait barang yang ditemukan</li>
                                     </ol>
                                 </div>
                             </div>
@@ -63,7 +63,23 @@
                                 <textarea class="form-control" name="penemuan" id="penemuan" rows="5"></textarea>
                             </div>
                         </div>
-                        @for($i=1; $i<=3; $i++) <div class="form-group row" id="form-lost{{$i}}" style="display: none;">
+
+                        <div class="form-group row" id="panduanlokasi" style="display: none;">
+                            <div class="col-lg-12">
+                                <div class="alert alert-warning alert-dismissible fade show">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <strong> <i class="fa fa-info"></i> Panduan Lokasi</strong>
+                                    <br>
+                                    <ol type="1">
+                                        <li>Pada form pertama lokasi harap mencantumkan lokasi kota kejadian. Misalnya, <strong>Yogyakarta, Jakarta, Tangerang</strong></li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        @for($i=1; $i<=3; $i++)<div class="form-group row" id="form-lost{{$i}}" style="display: none;">
                             <label class="col-lg-4 col-form-label" for="val-username"> Titik Lokasi {{$i}} <span class="text-danger">*</span>
                             </label>
                             <div class="col-lg-6">
@@ -86,15 +102,13 @@
                 <div class="form-group row">
                     <div class="col-lg-12">
                         <div class="alert alert-warning alert-dismissible fade show">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+
                             <strong> <i class="fa fa-info"></i> Panduan pengisian detail dan gambar</strong>
                             <br>
                             <ol type="1">
-                                <li>1. Harap mencantumkan informasi fisik dengan <b>detail</b>, namun tetap <b>menjaga privasi</b> dari barang/dokumen/hewan tersebut</li>
-                                <li>2. Gambar yang dapat di unggah minimal 1 gambar.</li>
-                                <li>3. Gambar yang dilampirkan harus tetap <b>menjaga privasi</b> dari barang/dokumen/hewan tersebut. Jika ingin memfoto dokumen penting <b>silahkan edit blur</b> informasi yang mengandung privasi</li>
+                                <li>Harap mencantumkan informasi fisik dengan <b>detail</b>, namun tetap <b>menjaga privasi</b> dari barang/dokumen/hewan tersebut</li>
+                                <li> Gambar yang dapat di unggah minimal 1 gambar.</li>
+                                <li> Gambar yang dilampirkan harus tetap <b>menjaga privasi</b> dari barang/dokumen/hewan tersebut. Jika ingin memfoto dokumen penting <b>silahkan blur</b> informasi yang mengandung privasi</li>
                             </ol>
                         </div>
                     </div>
@@ -110,7 +124,7 @@
                     <label class="col-lg-4 col-form-label" for="val-username">Gambar <span class="text-danger">*</span>
                     </label>
                     <div class="col-lg-6">
-                        <input type="file" class="form-control" name="gambar[]" required="">
+                        <input type="file" class="form-control" name="gambar[]" accept=".jpg, .jpeg, .png" required="">
                     </div>
                 </div>
                 <div class="form-group row">

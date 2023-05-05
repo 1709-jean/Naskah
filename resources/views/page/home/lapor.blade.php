@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label>Masukkan Keterangan</label>
+                            <label>Apakah konten menyinggung SARA dan seksualitas? Jika YA silahkan Klik Laporkan!</label>
                             <input type="" hidden="" id="id_postingan-{{$dt->id_postingan}}" name="">
                             <textarea class="form-control " rows="5" id="keterangan-{{$dt->id_postingan}}" placeholder="Konten mengandung SARA."></textarea>
                         </div>
@@ -19,6 +19,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="close-{{$dt->id_postingan}}" data-dismiss="modal">Tutup</button>
+                <!-- <button type="button" class="btn btn-primary more">Laporkan</button> -->
                 <button type="button" class="btn btn-primary more" more_id="{{$dt->id_postingan}}">Laporkan</button>
             </div>
         </div>

@@ -128,8 +128,8 @@
     sweetAlert({
         icon: 'warning',
         type: 'warning',
-        title: 'Email/NIK Telah Digunakan',
-        text: 'Silahkan menggunakan Email/NIK lainnya',
+        title: 'Email Telah Digunakan',
+        text: 'Silahkan menggunakan Email lainnya',
         showConfirmButton: false,
         timer: 1500
     });

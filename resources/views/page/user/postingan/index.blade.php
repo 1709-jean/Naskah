@@ -69,9 +69,9 @@
                                     <a href="{{route('delete_postingan',$dt->id_postingan)}}" class="btn btn-sm btn-danger text-white" onclick="return confirm('Apakah anda yakin menghapus Postingan?')">
                                         <i class="fa fa-trash"></i>
                                     </a>
-                                    <a href="{{route('delete_postingan',$dt->id_postingan)}}?clear_first={{md5($dt->id_postingan)}}" class="btn btn-sm btn-success text-white" onclick="return confirm('Apakah anda ingin Menyelesaikan Postingan Sendiri? Semua Klaim Postingan akan otomatis di Tolak')">
+                                    <!-- <a href="{{route('delete_postingan',$dt->id_postingan)}}?clear_first={{md5($dt->id_postingan)}}" class="btn btn-sm btn-success text-white" onclick="return confirm('Apakah anda ingin Menyelesaikan Postingan Sendiri? Semua Klaim Postingan akan otomatis di Tolak')">
                                         <i class="fa fa-check"></i>
-                                    </a>
+                                    </a> -->
                                     @else
                                     <span>
                                         -

@@ -16,6 +16,7 @@ class AdminController extends Controller
 		$user = User::where('level', 'User')->count();
 		$lost = Postingan::where('jenis_berita', 'lost')->count();
 		$found = Postingan::where('jenis_berita', 'found')->count();
+		// $lapor = \DB::table('lapor')->count();
 		$postingan = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
 			->select(
 				'postingan.tanggal_berita as tanggal',
@@ -23,7 +24,6 @@ class AdminController extends Controller
 			)
 			->groupBy('postingan.tanggal_berita')
 			->whereMonth('postingan.tanggal_berita', date('m'))
-			// ->where('cuti.status_cuti','true')
 			->get();
 		$data = [];
 
@@ -67,12 +67,15 @@ class AdminController extends Controller
 	{
 		$data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
 			->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
-			->join('lapor','lapor.id_postingan','=','postingan.id_postingan')
+			->join('lapor', 'lapor.id_postingan', '=', 'postingan.id_postingan')
 			->select(
 				\DB::RAW('count(lapor.id_postingan) as jml'),
-				'postingan.jenis_berita','kategori.nama_kategori','postingan.detail_berita','postingan.status_postingan'
+				'postingan.jenis_berita',
+				'kategori.nama_kategori',
+				'postingan.detail_berita',
+				'postingan.status_postingan'
 			)
-			->groupBy('postingan.jenis_berita','postingan.status_postingan','kategori.nama_kategori','postingan.detail_berita')
+			->groupBy('postingan.jenis_berita', 'postingan.status_postingan', 'kategori.nama_kategori', 'postingan.detail_berita')
 			->where('postingan.status_postingan', 'true')
 			->get();
 		return view('page.admin.report.index', compact('data'));

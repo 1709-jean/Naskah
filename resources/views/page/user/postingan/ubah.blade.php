@@ -33,13 +33,10 @@
                         <div class="form-group row">
                             <div class="col-lg-12">
                                 <div class="alert alert-warning alert-dismissible fade show">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
                                     <strong> <i class="fa fa-info"></i> Panduan pemberitahuan pertanyaan validasi kepemilikan</strong>
                                     <br>
                                     <ol type="1">
-                                        <li>1. Berikan pertanyaan yang spesifik terkait barang yang ditemukan</li>
+                                        <li> Berikan pertanyaan yang spesifik terkait barang yang ditemukan</li>
                                     </ol>
                                 </div>
                             </div>
@@ -93,15 +90,12 @@
                         <div class="form-group row">
                             <div class="col-lg-12">
                                 <div class="alert alert-warning alert-dismissible fade show">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
                                     <strong> <i class="fa fa-info"></i> Panduan pengisian detail dan gambar</strong>
                                     <br>
                                     <ol type="1">
-                                        <li>1. Harap mencantumkan informasi fisik dengan <b>detail</b>, namun tetap <b>menjaga privasi</b> dari barang/dokumen/hewan tersebut</li>
-                                        <li>2. Gambar yang dapat di unggah minimal 2 gambar.</li>
-                                        <li>3. Gambar yang dilampirkan harus tetap <b>menjaga privasi</b> dari barang/dokumen/hewan tersebut. Jika ingin memfoto dokumen penting <b>silahkan edit blur</b> informasi yang mengandung privasi</li>
+                                        <li> Harap mencantumkan informasi fisik dengan <b>detail</b>, namun tetap <b>menjaga privasi</b> dari barang/dokumen/hewan tersebut</li>
+                                        <li> Gambar yang dapat di unggah minimal 2 gambar.</li>
+                                        <li> Gambar yang dilampirkan harus tetap <b>menjaga privasi</b> dari barang/dokumen/hewan tersebut. Jika ingin memfoto dokumen penting <b>silahkan edit blur</b> informasi yang mengandung privasi</li>
                                     </ol>
                                 </div>
                             </div>
