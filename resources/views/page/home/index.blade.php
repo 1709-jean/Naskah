@@ -1,6 +1,6 @@
 @extends('layout/sbadmin')
 
-@section('title',"$tipe")
+@section('title',"Beranda")
 
 @section('content')
 <div class="row">
@@ -43,7 +43,7 @@
                 </p>
                 <div class="form-group text-center mt-5">
                     @foreach($gambar as $gbr)
-                    <img src="{{asset('gambar')}}/{{$gbr->gambar}}" width="500" class="img-fluid">
+                    <a href="{{asset('gambar')}}/{{$gbr->gambar}}" target="_blank"><img src="{{asset('gambar')}}/{{$gbr->gambar}}" class="img-fluid" width="200" height="200"></a>
                     @endforeach
                 </div>
             </div>
@@ -51,16 +51,7 @@
                 <div class="row">
                     <div class="col-lg-10"></div>
                     @if(Auth::user()->level == "User")
-                    <div class="col-lg-1 text-center">
-                        @if(Auth::user()->id !== $dt->id)
-                        <a href="" class="" data-toggle="modal" data-target="#laporkan{{$dt->id_postingan}}">
-                            <h5 class="text">
-                                <i class="fa fa-ban"></i> <br>
-                                <span class="text">Lapor</span>
-                            </h5>
-                        </a>
-                        @endif
-                    </div>
+
                     <div class="col-lg-1 text-center">
                         @if(Auth::user()->id !== $dt->id)
                         <a href="{{route('klaim',$dt->id_postingan)}}">
@@ -72,14 +63,7 @@
                         @endif
                     </div>
                     @else
-                    <div class="col-lg-1 text-center">
-                        <a href="{{route('delete_postingan',$dt->id_postingan)}}?act={{md5($dt->kode)}}" onclick="return confirm('Lanjut untuk membuang Postingan?')">
-                            <h4 class="text">
-                                <i class="fa fa-trash"></i> <br>
-                                <span class="text">Buang</span>
-                            </h4>
-                        </a>
-                    </div>
+
                     @endif
                 </div>
             </div>
@@ -111,7 +95,7 @@
                 </p>
                 <div class="form-group text-center mt-5">
                     @foreach($gambar as $gbr)
-                    <img src="{{asset('gambar')}}/{{$gbr->gambar}}" width="500" class="img-fluid">
+                    <a href="{{asset('gambar')}}/{{$gbr->gambar}}" target="_blank"><img src="{{asset('gambar')}}/{{$gbr->gambar}}" class="img-fluid" width="200" height="200"></a>
                     @endforeach
                 </div>
             </div>
@@ -119,16 +103,7 @@
                 <div class="row">
                     <div class="col-lg-10"></div>
                     @if(Auth::user()->level == "User")
-                    <div class="col-lg-1 text-center">
-                        @if(Auth::user()->id !== $dt->id)
-                        <a href="" class="" data-toggle="modal" data-target="#laporkan{{$dt->id_postingan}}">
-                            <h5 class="text">
-                                <i class="fa  fa-ban"></i> <br>
-                                <span class="text">Lapor</span>
-                            </h5>
-                        </a>
-                        @endif
-                    </div>
+
                     <div class="col-lg-1 text-center">
                         @if(Auth::user()->id !== $dt->id)
                         <a href="{{route('klaim',$dt->id_postingan)}}">
@@ -140,21 +115,15 @@
                         @endif
                     </div>
                     @else
-                    <div class="col-lg-1 text-center">
-                        <a href="{{route('delete_postingan',$dt->id_postingan)}}?act={{md5($dt->kode)}}" onclick="return confirm('Lanjut untuk membuang Postingan?')">
-                            <h4 class="text">
-                                <i class="fa fa-trash"></i> <br>
-                                <span class="text">Buang</span>
-                            </h4>
-                        </a>
-                    </div>
+
                     @endif
                 </div>
             </div>
         </div>
     </div>
     @endif
-    @include('page/home/lapor')
+
     @endforeach
+    <button onclick="topFunction()" id="myBtn" title="Go to top" style="background-color: white; border:0"></button>
 </div>
 @endsection

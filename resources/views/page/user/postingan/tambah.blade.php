@@ -63,7 +63,7 @@
                                 <textarea class="form-control" name="penemuan" id="penemuan" rows="5"></textarea>
                             </div>
                         </div>
-
+                        <!-- 
                         <div class="form-group row" id="panduanlokasi" style="display: none;">
                             <div class="col-lg-12">
                                 <div class="alert alert-warning alert-dismissible fade show">
@@ -77,7 +77,7 @@
                                     </ol>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         @for($i=1; $i<=3; $i++)<div class="form-group row" id="form-lost{{$i}}" style="display: none;">
                             <label class="col-lg-4 col-form-label" for="val-username"> Titik Lokasi {{$i}} <span class="text-danger">*</span>

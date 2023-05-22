@@ -25,6 +25,7 @@
     <link href="{{asset('sbadmin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
     <!-- Page plugins css -->
     <link href="{{asset('sbadmin/plugins/sweetalert/css/sweetalert.css')}}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -59,11 +60,7 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a href="{{route('postingan_report')}}" aria-expanded="false" class="nav-link">
-                    <i class="fa fa-flag"></i><span class="nav-text">Laporan Postingan</span>
-                </a>
-            </li>
+
 
             <li class="nav-item">
                 <a href="{{route('data_kategori')}}" aria-expanded="false" class="nav-link">
@@ -88,7 +85,7 @@
 
             <li class="nav-item">
                 <a href="{{route('postingan_saya')}}" aria-expanded="false" class="nav-link">
-                    <i class="fa fa-edit"></i><span class="nav-text">Postingan Saya</span>
+                    <i class="fa fa-edit"></i><span class="nav-text">Kelola Postingan Saya</span>
                 </a>
             </li>
 
@@ -105,11 +102,11 @@
             </li>
 
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="{{route('data_klaim')}}" aria-expanded="false" class="nav-link">
-                    <i class="fa fa-info"></i><span class="nav-text">Postingan di Klaim</span>
+                    <i class="fa fa-info"></i><span class="nav-text">Kelola Klaim</span>
                 </a>
-            </li>
+            </li> -->
 
             @endif
 
@@ -337,7 +334,7 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 </body>
 
-@include('layout/informasi')
+@include('layout/javascript')
 
 <script>
     function buka() {

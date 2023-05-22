@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-4">
             <div class="card card-widget">
                 <div class="card-body bg-warning">
                     <div class="media">
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
             <div class="card card-widget">
                 <div class="card-body bg-danger">
                     <div class="media">
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-4">
             <div class="card card-widget">
                 <div class="card-body gradient-4">
                     <div class="media">

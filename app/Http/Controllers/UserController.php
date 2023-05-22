@@ -18,6 +18,8 @@ class UserController extends Controller
 		$data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
 			->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
 			->where('users.id', Auth::user()->id)
+			->orderBy('postingan.tanggal_berita', 'DESC')
+			->orderBy('postingan.status_postingan', 'ASC')
 			->get();
 		return view('page.user.postingan.index', compact('data'));
 	}
@@ -163,33 +165,33 @@ class UserController extends Controller
 		return back()->with('del', 'Postingan Anda berhasil di Hapus!');
 	}
 
-	public function add_lapor(Request $request)
-	{
-		$cek = DB::table('lapor')
-			->where('id_user', Auth::user()->id)
-			->where('id_postingan', $request->id_postingan)
-			->first();
-		if (!empty($request->keterangan_lapor)) {
-			if ($cek == NULL) {
-				DB::table('lapor')->insert([
-					'id_user' => Auth::user()->id,
-					'id_postingan' => $request->id_postingan,
-					'keterangan_lapor' => $request->keterangan_lapor,
-				]);
-				return response()->json([
-					'yes' => '-'
-				]);
-			} else {
-				return response()->json([
-					'not' => '-'
-				]);
-			}
-		} else {
-			return response()->json([
-				'kosong' => '-'
-			]);
-		}
-	}
+	// public function add_lapor(Request $request)
+	// {
+	// 	$cek = DB::table('lapor')
+	// 		->where('id_user', Auth::user()->id)
+	// 		->where('id_postingan', $request->id_postingan)
+	// 		->first();
+	// 	if (!empty($request->keterangan_lapor)) {
+	// 		if ($cek == NULL) {
+	// 			DB::table('lapor')->insert([
+	// 				'id_user' => Auth::user()->id,
+	// 				'id_postingan' => $request->id_postingan,
+	// 				'keterangan_lapor' => $request->keterangan_lapor,
+	// 			]);
+	// 			return response()->json([
+	// 				'yes' => '-'
+	// 			]);
+	// 		} else {
+	// 			return response()->json([
+	// 				'not' => '-'
+	// 			]);
+	// 		}
+	// 	} else {
+	// 		return response()->json([
+	// 			'kosong' => '-'
+	// 		]);
+	// 	}
+	// }
 
 	public function klaim($id_postingan)
 	{

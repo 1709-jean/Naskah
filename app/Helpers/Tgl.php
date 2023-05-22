@@ -1,7 +1,7 @@
 <?php
 function tgl_lf($tgl, $tampil_hari = true)
 {
-  $nama_hari = array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu");
+  $nama_hari = array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu");
   $nama_bulan = array(
     1 => "Jan", "Feb", "Mar", "Apr", "Mei", "Juni", "Juli", "Agts",
     "Sep", "Okt", "Nov", "Des"

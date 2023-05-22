@@ -34,72 +34,7 @@
                 }
             });
         })
-        $(document).ready(function() {
-            $(".more").click(function() {
-                let id = $(this).attr("more_id");
-                var id_postingan = document.getElementById('id_postingan-' + id);
-                var keterangan_lapor = document.getElementById('keterangan-' + id);
-                id_postingan.value = id;
-                var x = keterangan_lapor.value;
-                // $(".aksi").click(function() {
-                //     var x = keterangan.value;
-                $.ajax({
-                    url: "{{route('add_lapor')}}",
-                    type: 'POST',
-                    data: {
-                        '_method': 'POST',
-                        '_token': '{{ csrf_token() }}',
-                        'id_postingan': id,
-                        'keterangan_lapor': x
-                    },
-                    success: function(response) {
-                        if (response.yes) {
-                            sweetAlert({
-                                type: 'success',
-                                title: 'Berhasil!',
-                                text: 'Terima Kasih atas partisipasi anda telah melaporkan  postingan yang menyimpang.',
-                                showConfirmButton: false,
-                                timer: 2000
-                            });
-                            keterangan_lapor.value = "";
-                            document.querySelector('#close-' + id).click();
-                        }
-                        if (response.not) {
-                            sweetAlert({
-                                type: 'warning',
-                                title: 'Anda Sudah Lapor',
-                                text: 'Anda telah melaporkan Postingan ini.',
-                                showConfirmButton: false,
-                                timer: 2000
-                            });
-                            keterangan_lapor.value = "";
-                            document.querySelector('#close-' + id).click();
-                        }
-                        if (response.kosong) {
-                            toastr.warning("Lengkapi Form", "Isiskan Keterangan Laporan!", {
-                                timeOut: 4e3,
-                                closeButton: !0,
-                                debug: !1,
-                                newestOnTop: !0,
-                                progressBar: !0,
-                                positionClass: "toast-top-right",
-                                preventDuplicates: !0,
-                                onclick: null,
-                                showDuration: "300",
-                                hideDuration: "1000",
-                                extendedTimeOut: "1000",
-                                showEasing: "swing",
-                                hideEasing: "linear",
-                                showMethod: "fadeIn",
-                                hideMethod: "fadeOut",
-                                tapToDismiss: !1
-                            });
-                            keterangan_lapor.value = "";
-                        }
-                    }
-                });
-            });
-        });
+        // 
         $(document).ready(function() {
             $("#copy").hide();
             $("#add-more").click(function() {
@@ -144,7 +79,7 @@
                 $("#form-lost1").show();
                 $("#form-lost2").show();
                 $("#form-lost3").show();
-                $("#panduanlokasi").show();
+                // $("#panduanlokasi").show();
 
                 penemuan.required = false;
                 pertanyaan.required = false;
@@ -178,7 +113,7 @@
                 $("#form-lost1").hide();
                 $("#form-lost2").hide();
                 $("#form-lost3").hide();
-                $("#panduanlokasi").hide();
+                // $("#panduanlokasi").hide();
                 // 
                 penemuan.required = true;
                 pertanyaan.required = true;
@@ -191,23 +126,3 @@
             });
         })
     </script>
-    <!-- <script>
-        (function($) {
-            "use strict"
-
-            new quixSettings({
-                version: "light", //2 options "light" and "dark"
-                layout: "vertical", //2 options, "vertical" and "horizontal"
-                navheaderBg: "color_1", //have 10 options, "color_1" to "color_10"
-                headerBg: "color_1", //have 10 options, "color_1" to "color_10"
-                sidebarStyle: "full", //defines how sidebar should look like, options are: "full", "compact", "mini" and "overlay". If layout is "horizontal", sidebarStyle won't take "overlay" argument anymore, this will turn into "full" automatically!
-                sidebarBg: "color_1", //have 10 options, "color_1" to "color_10"
-                sidebarPosition: "fixed", //have two options, "static" and "fixed"
-                headerPosition: "fixed", //have two options, "static" and "fixed"
-                containerLayout: "wide", //"boxed" and  "wide". If layout "vertical" and containerLayout "boxed", sidebarStyle will automatically turn into "overlay".
-                direction: "ltr" //"ltr" = Left to Right; "rtl" = Right to Left
-            });
-
-
-        })(jQuery);
-    </script> -->

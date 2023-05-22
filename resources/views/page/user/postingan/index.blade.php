@@ -20,9 +20,12 @@
                             <tr>
                                 <th>No. </th>
                                 <th>Jenis Berita</th>
+                                <th>Tanggal Berita</th>
                                 <th>Kategori</th>
                                 <th>Detail Berita</th>
                                 <th>Jumlah Gambar</th>
+                                <th>Status Klaim</th>
+                                <th>Total Klaim</th>
                                 <th>Status Postingan</th>
                                 <th>Action</th>
                             </tr>
@@ -37,6 +40,25 @@
                                 ->where('users.id', Auth::user()->id)
                                 ->where('postingan_gambar.id_postingan', $dt->id_postingan)
                                 ->count();
+                            //tambahan
+                            $jml = DB::table('postingan')
+                                ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                                ->join('klaim', 'klaim.id_postingan', '=', 'postingan.id_postingan')
+                                ->where('klaim.id_postingan', $dt->id_postingan)
+                                // ->where('klaim.status_klaim','pending')
+                                ->count();
+                            $status = DB::table('postingan')
+                                ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                                ->join('klaim', 'klaim.id_postingan', '=', 'postingan.id_postingan')
+                                ->where('klaim.id_postingan', $dt->id_postingan)
+                                ->where('klaim.status_klaim', 'pending')
+                                ->first();
+                            $cek = DB::table('postingan')
+                                ->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+                                ->join('klaim', 'klaim.id_postingan', '=', 'postingan.id_postingan')
+                                ->where('klaim.id_postingan', $dt->id_postingan)
+                                // ->where('klaim.status_klaim','pending')
+                                ->count();
                             ?>
                             <tr>
                                 <td>{{$no}}.</td>
@@ -47,9 +69,45 @@
                                     <span class="badge text-white bg-primary">FOUND</span>
                                     @endif
                                 </td>
+                                <td>{{$dt->tanggal_berita}}</td>
                                 <td>{{$dt->nama_kategori}}</td>
                                 <td>{{$dt->detail_berita}}</td>
                                 <td>{{$gambar}}</td>
+
+                                <td align="center">
+                                    @if($dt->status_postingan=="true" OR $dt->status_postingan=="clear")
+                                    @if($cek == 0)
+                                    <span class="text text-danger">
+                                        Belum ada yang <br> Melakukan Klaim / <br>Mengajukan Informasi
+                                    </span>
+                                    @else
+                                    @if($status == NULL)
+                                    <span class="text text-success">
+                                        <i class="fa fa-check"></i> Sudah di lakukan Verifikasi
+                                    </span>
+                                    @else
+                                    <span class="text text-warning">
+                                        <i class="fa fa-spinner"></i> Belum ada Verifikasi
+                                    </span>
+                                    @endif
+                                    @endif
+                                    @elseif($dt->status_postingan=="false")
+                                    <span class="badge bg-danger text-white">Postingan Melanggar <br> Aturan !</span>
+                                    @elseif($dt->status_postingan=="clear first")
+                                    <span class="text text-success text-warning">Berita telah Anda <br> selesaikan secara mandiri</span>
+                                    @endif
+                                    <br>
+                                    @if($dt->status_postingan!=="false")
+                                    <a href="{{route('lihat_klaim',$dt->id_postingan)}}" class="btn btn-sm btn-primary text-white">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    @else
+                                    <span>-</span>
+                                    @endif
+                                </td>
+
+                                <td>{{$jml}}</td>
+
                                 <td align="center">
                                     @if($dt->status_postingan=="true")
                                     <span class="badge bg-primary text-white">Aktif</span>
@@ -69,9 +127,9 @@
                                     <a href="{{route('delete_postingan',$dt->id_postingan)}}" class="btn btn-sm btn-danger text-white" onclick="return confirm('Apakah anda yakin menghapus Postingan?')">
                                         <i class="fa fa-trash"></i>
                                     </a>
-                                    <!-- <a href="{{route('delete_postingan',$dt->id_postingan)}}?clear_first={{md5($dt->id_postingan)}}" class="btn btn-sm btn-success text-white" onclick="return confirm('Apakah anda ingin Menyelesaikan Postingan Sendiri? Semua Klaim Postingan akan otomatis di Tolak')">
+                                    <a href="{{route('delete_postingan',$dt->id_postingan)}}?clear_first={{md5($dt->id_postingan)}}" class="btn btn-sm btn-success text-white" onclick="return confirm('Apakah anda ingin Menyelesaikan Postingan Sendiri? Semua Klaim Postingan akan otomatis di Tolak')">
                                         <i class="fa fa-check"></i>
-                                    </a> -->
+                                    </a>
                                     @else
                                     <span>
                                         -
