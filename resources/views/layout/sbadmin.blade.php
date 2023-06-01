@@ -128,9 +128,6 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <?php
                     $namaKategori = DB::table('kategori')->get();
-                    if (Auth::user()->level == "User") {
-                        $profil = DB::table('biodata')->where('id_user', Auth::user()->id)->first();
-                    }
                     ?>
                     <select class="form-control" id="tipe" name="tipe" aria-label="Search Dashboard">
                         <option value="">Jenis Berita</option>
@@ -251,16 +248,11 @@
                                 </div>
                             </div>
                             @if(Auth::user()->level == "User")
-                            <!-- <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label>NIK</label>
-                                    <input type="text" class="form-control" required="" value="{{$profil->nik}}" name="nik">
-                                </div>
-                            </div> -->
+
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>No Handphone</label>
-                                    <input type="text" class="form-control" required="" value="{{$profil->telepon}}" name="telepon">
+                                    <input type="text" class="form-control" required="" value="{{Auth::user()->telepon}}" name="telepon">
                                 </div>
                             </div>
                             @endif

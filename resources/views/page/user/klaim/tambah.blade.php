@@ -33,6 +33,19 @@
                         @if($postingan->jenis_berita=="found")
                         <div class="form-group row">
                             <div class="col-lg-12">
+                                <b>Detail Berita</b>
+                                <br>
+                                <?php
+                                $array = explode(PHP_EOL, $postingan->detail_berita);
+                                $total = count($array);
+                                foreach ($array as $item) {
+                                    echo "<span>" . $item . "</span><br>";
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-12">
                                 <b>Pertanyaan :</b>
                                 <br>
                                 <?php

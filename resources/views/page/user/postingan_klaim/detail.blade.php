@@ -11,16 +11,6 @@
                 @csrf
                 <div class="modal-body">
                     <div class="row">
-                        <!-- <div class="col-6">
-                            <div class="form-group">
-                                <label>NIK</label>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label>{{$dt->nik}}</label>
-                            </div>
-                        </div> -->
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Nama</label>

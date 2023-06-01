@@ -22,7 +22,7 @@
                     @if($dt->jenis_berita=="found")
                     <div class="col-lg-12 text-center">
                         @foreach($namaPembuat as $namap)
-                        @if($namap->id_user==$dt->id)
+                        @if($namap->id==$dt->id)
                         {{$namap->telepon}}
                         <br> Atau bisa <br>
                         <a target="_blank" class="badge bg-success text-white" href="https://wa.me/62{{substr($namap->telepon,1)}}" target="_blank">

@@ -35,6 +35,18 @@
                                 <input type="radio" id="btn-found" value="found" name="jenis_berita" class="btn mb-1 btn-rounded form-control btn-outline-primary btn-sm">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-lg-4 col-form-label" for="val-skill">Kategori <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-6">
+                                <select class="form-control" name="id_kategori" required="">
+                                    <option value="">.: PILIH KATEGORI :.</option>
+                                    @foreach($kategori as $ktg)
+                                    <option value="{{$ktg->id_kategori}}">{{$ktg->nama_kategori}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row" id="form-found1" style="display: none;">
                             <div class="col-lg-12">
                                 <div class="alert alert-warning alert-dismissible fade show">
@@ -87,18 +99,6 @@
                             </div>
                 </div>
                 @endfor
-                <div class="form-group row">
-                    <label class="col-lg-4 col-form-label" for="val-skill">Kategori <span class="text-danger">*</span>
-                    </label>
-                    <div class="col-lg-6">
-                        <select class="form-control" name="id_kategori" required="">
-                            <option value="">.: PILIH KATEGORI :.</option>
-                            @foreach($kategori as $ktg)
-                            <option value="{{$ktg->id_kategori}}">{{$ktg->nama_kategori}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
                 <div class="form-group row">
                     <div class="col-lg-12">
                         <div class="alert alert-warning alert-dismissible fade show">

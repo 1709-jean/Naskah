@@ -108,8 +108,8 @@
                         @if(Auth::user()->id !== $dt->id)
                         <a href="{{route('klaim',$dt->id_postingan)}}">
                             <h5 class="text">
-                                <i class="fa fa-check"></i> <br>
-                                <span class="text">Klaim</span>
+                                <i class="fa fa-info-circle"></i> <br>
+                                <span class="text">Berikan Informasi</span>
                             </h5>
                         </a>
                         @endif

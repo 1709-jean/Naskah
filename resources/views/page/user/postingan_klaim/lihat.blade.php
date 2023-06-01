@@ -3,6 +3,9 @@
 @section('title','Lihat Klaim')
 
 @section('content')
+<p><a href="{{route('postingan_saya')}}" class="btn btn-sm text-white btn-primary">
+        <i class="fa fa-arrow-left"></i></a>
+</p>
 <div class="row">
     <div class="col-lg-12">
         <div class="card">

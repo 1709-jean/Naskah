@@ -43,92 +43,53 @@ class HomeController extends Controller
 	{
 		return view('register');
 	}
-
-	// public function daftar_akun(Request $request)
-	// {
-	// 	$cek = User::join('biodata', 'biodata.id_user', '=', 'users.id')
-	// 		// ->where('biodata.nik', $request->nik)
-	// 		->orWhere('users.email', $request->email)
-	// 		->first();
-	// 	if ($cek == NULL) {
-	// 		if ($request->hasFile('foto')) {
-	// 			$request->validate(
-	// 				[
-	// 					'email' => 'required|email',
-	// 					'telepon' => 'required|min:10',
-	// 					// 'nik' => 'required|min:16|max:16',
-	// 					'password' => 'required|min:8|max:8',
-	// 				],
-	// 				[
-	// 					'email.email' => 'Input berupa format Email',
-	// 					'telepon.min' => 'Nomor Handphone minimal 10 angka',
-	// 					// 'nik.min' => 'NIK minimal dan maksimal 16 angka',
-	// 					// 'nik.max' => 'NIK minimal dan maksimal 16 angka',
-	// 					'password.min' => 'Password minimal dan maksimal 8 karakter',
-	// 					'password.max' => 'Password minimal dan maksimal 8 karakter',
-	// 				]
-	// 			);
-	// 			$ambil = $request->file('foto');
-	// 			$name = $ambil->getClientOriginalName();
-	// 			$namaFileBaru = uniqid();
-	// 			$namaFileBaru .= $name;
-	// 			$ambil->move(\base_path() . "/public/ktp", $namaFileBaru);
-	// 			$user = new User();
-	// 			$user->name = $request->name;
-	// 			$user->email = $request->email;
-	// 			$user->password = hash::make($request->password);
-	// 			$user->level = 'User';
-	// 			$user->save();
-	// 			DB::table('biodata')->insert([
-	// 				'id_user' => $user->id,
-	// 				// 'nik' => $request->nik,
-	// 				'telepon' => $request->telepon,
-	// 				'ktp' => $namaFileBaru,
-	// 			]);
-	// 		}
-	// 	} else {
-	// 		return back()->with('sama', '-');
-	// 	}
-	// 	return redirect(route('login'))->with('berhasil_register', 'Silahkan login sesuai email dan password yang didaftarkan!');
-	// }
-
 	public function daftar_akun(Request $request)
 	{
-		$cek = User::where('email', $request->email)->first();
+		$cek = User::join('biodata', 'biodata.id_user', '=', 'users.id')
+			// ->where('biodata.nik', $request->nik)
+			->orWhere('users.email', $request->email)
+			->first();
 		if ($cek == NULL) {
 			if ($request->hasFile('foto')) {
-				$request->validate([
-					'email' => 'required|email',
-					'telepon' => 'required|min:10',
-					'password' => 'required|min:8|max:8',
-				], [
-					'email.email' => 'Input berupa format Email',
-					'telepon.min' => 'Nomor Handphone minimal 10 angka',
-					'password.min' => 'Password minimal dan maksimal 8 karakter',
-					'password.max' => 'Password minimal dan maksimal 8 karakter',
-				]);
-
+				$request->validate(
+					[
+						'email' => 'required|email',
+						'telepon' => 'required|min:10',
+						// 'nik' => 'required|min:16|max:16',
+						'password' => 'required|min:8|max:8',
+					],
+					[
+						'email.email' => 'Input berupa format Email',
+						'telepon.min' => 'Nomor Handphone minimal 10 angka',
+						// 'nik.min' => 'NIK minimal dan maksimal 16 angka',
+						// 'nik.max' => 'NIK minimal dan maksimal 16 angka',
+						'password.min' => 'Password minimal dan maksimal 8 karakter',
+						'password.max' => 'Password minimal dan maksimal 8 karakter',
+					]
+				);
 				$ambil = $request->file('foto');
 				$name = $ambil->getClientOriginalName();
 				$namaFileBaru = uniqid();
 				$namaFileBaru .= $name;
 				$ambil->move(\base_path() . "/public/ktp", $namaFileBaru);
-
 				$user = new User();
 				$user->name = $request->name;
 				$user->email = $request->email;
-				$user->password = Hash::make($request->password);
+				$user->password = hash::make($request->password);
 				$user->level = 'User';
-				$user->telepon = $request->telepon;
-				$user->ktp = $namaFileBaru;
 				$user->save();
+				DB::table('biodata')->insert([
+					'id_user' => $user->id,
+					// 'nik' => $request->nik,
+					'telepon' => $request->telepon,
+					'ktp' => $namaFileBaru,
+				]);
 			}
 		} else {
 			return back()->with('sama', '-');
 		}
 		return redirect(route('login'))->with('berhasil_register', 'Silahkan login sesuai email dan password yang didaftarkan!');
 	}
-
 	public function logout()
 	{
 		Auth::logout();

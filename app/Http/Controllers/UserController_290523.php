@@ -246,7 +246,7 @@ class UserController extends Controller
 			->join('users', 'users.id', '=', 'postingan.id_user')
 			->where('klaim.id_user', Auth::user()->id)
 			->get();
-		$namaPembuat = User::get();
+		$namaPembuat = User::join('biodata', 'biodata.id_user', '=', 'users.id')->get();
 		return view('page.user.klaim.index', compact('data', 'namaPembuat'));
 	}
 	public function ubah_klaim($id_klaim)
@@ -306,7 +306,7 @@ class UserController extends Controller
 			->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
 			->join('klaim', 'klaim.id_postingan', '=', 'postingan.id_postingan')
 			->join('users', 'users.id', '=', 'klaim.id_user')
-			// ->join('biodata', 'users.id', '=', 'biodata.id_user')
+			->join('biodata', 'users.id', '=', 'biodata.id_user')
 			->where('klaim.id_postingan', $id_postingan)
 			->where('postingan.id_user', Auth::user()->id)
 			->where('postingan.status_postingan', '!=', 'false')
@@ -332,27 +332,6 @@ class UserController extends Controller
 		return back()->with('up', 'Anda berhasil melakukan Verifikasi Klaim/Pengajuan Informasi');
 	}
 
-	// public function ubah_user(Request $request)
-	// {
-	// 	if ($request->password == "") {
-	// 		$password = $request->passwordLama;
-	// 	} else {
-	// 		$password = hash::make($request->password);
-	// 	}
-	// 	DB::table('users')->where('id', Auth::user()->id)->update([
-	// 		'name' => $request->name,
-	// 		'email' => $request->email,
-	// 		'password' => $password,
-	// 	]);
-	// 	if (Auth::user()->level == "User") {
-	// 		DB::table('biodata')->where('id_user', Auth::user()->id)->update([
-
-	// 			'telepon' => $request->telepon,
-	// 		]);
-	// 	}
-	// 	return redirect()->back()->with('up', 'Anda berhasil memperbarui Profil');
-	// }
-
 	public function ubah_user(Request $request)
 	{
 		if ($request->password == "") {
@@ -364,9 +343,13 @@ class UserController extends Controller
 			'name' => $request->name,
 			'email' => $request->email,
 			'password' => $password,
-			// 'nik' => $request->nik,
-			'telepon' => $request->telepon,
 		]);
+		if (Auth::user()->level == "User") {
+			DB::table('biodata')->where('id_user', Auth::user()->id)->update([
+
+				'telepon' => $request->telepon,
+			]);
+		}
 		return redirect()->back()->with('up', 'Anda berhasil memperbarui Profil');
 	}
 }

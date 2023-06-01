@@ -17,6 +17,7 @@
                             <tr>
                                 <th>No. </th>
                                 <th>Jenis Berita</th>
+                                <th>Pengunggah Berita</th>
                                 <th>Detail</th>
                                 <th>Jawaban</th>
                                 <th>Status</th>
@@ -42,6 +43,7 @@
                                     <span class="badge text-white bg-primary">FOUND</span>
                                     @endif
                                 </td>
+                                <td>{{$dt->name}}</td>
                                 <td>{{$dt->detail_berita}}</td>
                                 <td>{{$dt->jawaban_klaim}}</td>
                                 <td>
