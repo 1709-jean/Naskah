@@ -3,9 +3,6 @@
 @section('title','Lihat Klaim')
 
 @section('content')
-<p><a href="{{route('postingan_saya')}}" class="btn btn-sm text-white btn-primary">
-        <i class="fa fa-arrow-left"></i></a>
-</p>
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -43,8 +40,25 @@
                                     <form method="post" action="{{route('verifikasi_klaim',$dt->id_klaim)}}">
                                         @csrf
                                         <input type="hidden" value="{{$dt->id_postingan}}" name="id_postingan">
+                                        <input type="hidden" value="true" name="status" />
                                         <button onclick="return confirm('Lanjut untuk Terima Klaim dari {{$dt->name}}? ini hanya bisa di lakukan 1x dan Klaim lainnya akan otomatis di Tolak')" class="btn btn-sm btn-success text-white">
                                             <i class="fa fa-check"></i>
+                                        </button>
+                                    </form>
+
+                                    <form method="post" action="{{route('verifikasi_klaim',$dt->id_klaim)}}">
+                                        @csrf
+                                        <input type="hidden" value="{{$dt->id_postingan}}" name="id_postingan">
+                                        <input type="hidden" name="status" value="false">
+                                        <button class="btn btn-sm btn-danger text-white ml-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                <style>
+                                                    svg {
+                                                        fill: #ffffff
+                                                    }
+                                                </style>
+                                                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                                            </svg>
                                         </button>
                                     </form>
                                     @else

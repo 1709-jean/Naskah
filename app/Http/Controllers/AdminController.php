@@ -16,6 +16,10 @@ class AdminController extends Controller
 		$user = User::where('level', 'User')->count();
 		$lost = Postingan::where('jenis_berita', 'lost')->count();
 		$found = Postingan::where('jenis_berita', 'found')->count();
+		$foundop = Postingan::where('jenis_berita', 'found')->where('status_postingan', 'true')->count();
+		$lostop = Postingan::where('jenis_berita', 'lost')->where('status_postingan', 'true')->count();
+		$founddone = Postingan::where('jenis_berita', 'found')->where('status_postingan', 'clear')->count();
+		$lostdone = Postingan::where('jenis_berita', 'lost')->where('status_postingan', 'clear')->count();
 
 		$postingan = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
 			->select(
@@ -33,7 +37,7 @@ class AdminController extends Controller
 		}
 
 		$data['chart_data'] = json_encode($data);
-		return view('page.admin.home.index', $data, compact('user', 'lost', 'found'));
+		return view('page.admin.home.index', $data, compact('user', 'lost', 'found', 'foundop', 'lostop', 'lostdone', 'founddone'));
 	}
 
 	public function data_kategori()

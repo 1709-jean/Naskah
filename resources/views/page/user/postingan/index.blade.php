@@ -3,6 +3,49 @@
 @section('title','Postingan Saya')
 
 @section('content')
+
+<div class="card">
+    <div class="card-body">
+        <form action="{{ route('postingan_saya') }}" method="get">
+            @csrf
+            <div class="row">
+                {{-- <form action="" method="get"></form> --}}
+                <div class="col">
+                    {{-- <input type="text" class="form-control" placeholder="First name"> --}}
+                    <select name="search_jenis_berita" id="" class="form-control">
+                        <option value="">Jenis Berita</option>
+                        <option value="lost">Lost</option>
+                        <option value="found">Found</option>
+                    </select>
+                </div>
+                <div class="col">
+                    {{-- <input type="text" class="form-control" placeholder="Last name"> --}}
+                    {{-- {{$categories}} --}}
+                    <select name="search_kategori_berita" id="" class="form-control">
+                        <option value="">Kategori Berita</option>
+                        @foreach ($categories as $item)
+                        <option value="{{ $item->id_kategori }}">{{$item->nama_kategori}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col">
+                    {{-- <input type="text" class="form-control" placeholder="Last name"> --}}
+                    <select name="search_status_postingan" id="" class="form-control">
+                        <option value="">Status Postingan</option>
+                        <option value="true">Menunggu Verifikasi</option>
+                        <option value="clear first">Selesai Mandiri</option>
+                        <option value="clear">Telah Dihapus</option>
+                    </select>
+                </div>
+                <div class="col">
+                    {{-- <input type="text" class="form-control" placeholder="Last name"> --}}
+                    <button class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">

@@ -121,10 +121,10 @@
                     </div>
                 </div>
                 <div class="form-group row" id="after-add-more">
-                    <label class="col-lg-4 col-form-label" for="val-username">Gambar</span>
+                    <label class="col-lg-4 col-form-label" for="val-username">Gambar <span class="text-danger">*</span>
                     </label>
                     <div class="col-lg-6">
-                        <input type="file" class="form-control" name="gambar[]" accept=".jpg, .jpeg, .png">
+                        <input type="file" class="form-control" name="gambar[]" accept=".jpg, .jpeg, .png" required="">
                     </div>
                 </div>
                 <div class="form-group row">

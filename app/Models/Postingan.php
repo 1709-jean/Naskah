@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Postingan extends Model
 {
-  // use HasFactory;
+  use HasFactory;
   protected $table = "postingan";
   protected $primaryKey = "id_postingan";
+  protected $guarded = [];
 }

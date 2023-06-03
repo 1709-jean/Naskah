@@ -8,20 +8,36 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Postingan;
+use App\Models\Klaim;
+use Kategori;
 
 date_default_timezone_set('Asia/Jakarta');
 
 class UserController extends Controller
 {
-	public function postingan_saya()
+	public function postingan_saya(Request $request)
 	{
+		if ($request->search_jenis_berita) {
+			$categories = DB::table('kategori')->get();
+			$data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
+				->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
+				->where('users.id', Auth::user()->id)
+				->where('jenis_berita', $request->search_jenis_berita)
+				->where('postingan.id_kategori', $request->search_kategori_berita)
+				->where('status_postingan', $request->search_status_postingan)
+				->orderBy('postingan.tanggal_berita', 'DESC')
+				->orderBy('postingan.status_postingan', 'ASC')
+				->get();
+			return view('page.user.postingan.index', compact('data', 'categories'));
+		}
+		$categories = DB::table('kategori')->get();
 		$data = Postingan::join('users', 'users.id', '=', 'postingan.id_user')
 			->join('kategori', 'kategori.id_kategori', '=', 'postingan.id_kategori')
 			->where('users.id', Auth::user()->id)
 			->orderBy('postingan.tanggal_berita', 'DESC')
 			->orderBy('postingan.status_postingan', 'ASC')
 			->get();
-		return view('page.user.postingan.index', compact('data'));
+		return view('page.user.postingan.index', compact('data', 'categories'));
 	}
 	public function tambah_postingan()
 	{
@@ -68,19 +84,22 @@ class UserController extends Controller
 				'penemuan' => $request->penemuan,
 			]);
 		}
-		foreach ($request->gambar as $key => $value) {
-			$ambil = $request->file('gambar')[$key];
-			$namaFileBaru = md5($ambil->getClientOriginalName());
-			$namafoto = $ambil->move(\base_path() . "/public/gambar", $namaFileBaru);
-			DB::table('postingan_gambar')->insert([
-				'id_postingan' => $postingan->id_postingan,
-				'gambar' => $namaFileBaru,
-				'path' => $namafoto,
-			]);
+		if ($request->gambar) {
+			foreach ($request->gambar as $key => $value) {
+				$ambil = $request->file('gambar')[$key];
+				$namaFileBaru = md5($ambil->getClientOriginalName());
+				$namafoto = $ambil->move(\base_path() . "/public/gambar", $namaFileBaru);
+				DB::table('postingan_gambar')->insert([
+					'id_postingan' => $postingan->id_postingan,
+					'gambar' => $namaFileBaru,
+					'path' => $namafoto,
+				]);
+			}
 		}
 		$this->validate($request, $validate, $customMessages);
 		return redirect(route('postingan_saya'))->with('add', 'Postingan berhasil di Tambahkan!');
 	}
+
 	public function ubah_postingan($id_postingan)
 	{
 		$kategori = DB::table('kategori')->get();
@@ -109,6 +128,7 @@ class UserController extends Controller
 			->get();
 		return view('page.user.postingan.ubah', compact('kategori', 'data', 'lost', 'gambar', 'found'));
 	}
+
 	public function update_postingan(Request $request, $id_postingan)
 	{
 		Postingan::where('id_postingan', $id_postingan)->update([
@@ -317,18 +337,14 @@ class UserController extends Controller
 
 	public function verifikasi_klaim(Request $request, $id_klaim)
 	{
-		DB::table('klaim')->where('id_klaim', $id_klaim)->update([
-			'status_klaim' => 'true',
-		]);
-		DB::table('klaim')
-			->where('id_postingan', $request->id_postingan)
-			->where('status_klaim', 'pending')
-			->update([
-				'status_klaim' => 'false',
+		if ($request->status == 'true') {
+			Postingan::where('id_postingan', $request->id_postingan)->get()[0]->update([
+				'status_postingan' => 'clear',
 			]);
-		Postingan::where('id_postingan', $request->id_postingan)->update([
-			'status_postingan' => 'clear',
-		]);
+		}
+
+		Klaim::where('id_klaim', $id_klaim)->get()[0]->update(['status_klaim' => $request->status]);
+
 		return back()->with('up', 'Anda berhasil melakukan Verifikasi Klaim/Pengajuan Informasi');
 	}
 
