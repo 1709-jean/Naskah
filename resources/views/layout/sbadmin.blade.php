@@ -50,7 +50,7 @@
 
             <li class="nav-item">
                 <a href="{{route('dashboard_admin')}}" aria-expanded="false" class="nav-link">
-                    <i class="fas fa-fw fa-tachometer-alt"></i><span class="nav-text">Dashboard</span>
+                    <i class="fas fa-fw fa-tachometer-alt"></i><span class="nav-text">Home</span>
                 </a>
             </li>
 

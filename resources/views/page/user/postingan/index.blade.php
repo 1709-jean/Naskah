@@ -32,9 +32,9 @@
                     {{-- <input type="text" class="form-control" placeholder="Last name"> --}}
                     <select name="search_status_postingan" id="" class="form-control">
                         <option value="">Status Postingan</option>
-                        <option value="true">Menunggu Verifikasi</option>
+                        <option value="true">Belum Verifikasi</option>
                         <option value="clear first">Selesai Mandiri</option>
-                        <option value="clear">Telah Dihapus</option>
+                        <option value="clear">Selesai Verifikasi</option>
                     </select>
                 </div>
                 <div class="col">

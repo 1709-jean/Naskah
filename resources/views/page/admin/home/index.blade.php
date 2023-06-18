@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="card card-widget">
                 <div class="card-body bg-danger">
                     <div class="media">
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="card card-widget">
                 <div class="card-body bg-secondary">
                     <div class="media">
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="card card-widget">
                 <div class="card-body bg-success">
                     <div class="media">
@@ -51,8 +51,10 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-2">
+    <div class="row">
+        <div class="col-md-3">
             <div class="card card-widget">
                 <div class="card-body bg-primary">
                     <div class="media">
@@ -66,7 +68,7 @@
             </div>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="card card-widget">
                 <div class="card-body bg-secondary">
                     <div class="media">
@@ -80,7 +82,7 @@
             </div>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="card card-widget">
                 <div class="card-body bg-success">
                     <div class="media">
@@ -93,8 +95,10 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-2">
+    <div class="row">
+        <div class="col-md-3">
             <div class="card card-widget">
                 <div class="card-body gradient-4">
                     <div class="media">
@@ -107,5 +111,6 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        @endsection
+    @endsection

@@ -333,37 +333,15 @@ class UserController extends Controller
 		return view('page.user.postingan_klaim.lihat', compact('data'));
 	}
 
-	// public function verifikasi_klaim(Request $request, $id_klaim)
-	// {
-	// 	if ($request->status == 'true') {
-	// 		Postingan::where('id_postingan', $request->id_postingan)->get()[0]->update([
-	// 			'status_postingan' => 'clear',
-	// 		]);
-	// 	}
-
-	// 	Klaim::where('id_klaim', $id_klaim)->get()[0]->update(['status_klaim' => $request->status]);
-
-	// 	return back()->with('up', 'Anda berhasil melakukan Verifikasi Klaim/Pengajuan Informasi');
-	// }
-
 	public function verifikasi_klaim(Request $request, $id_klaim)
 	{
-		$klaim = Klaim::findOrFail($id_klaim);
-
 		if ($request->status == 'true') {
-			Postingan::where('id_postingan', $request->id_postingan)->update([
+			Postingan::where('id_postingan', $request->id_postingan)->get()[0]->update([
 				'status_postingan' => 'clear',
 			]);
-
-			// Menolak semua klaim yang terkait dengan postingan tersebut kecuali yang sedang diproses
-			Klaim::where('id_postingan', $request->id_postingan)
-				->where('id_klaim', '!=', $id_klaim)
-				->where('status_klaim', 'pending')
-				->update(['status_klaim' => 'false']);
 		}
 
-		$klaim->status_klaim = $request->status;
-		$klaim->save();
+		Klaim::where('id_klaim', $id_klaim)->get()[0]->update(['status_klaim' => $request->status]);
 
 		return back()->with('up', 'Anda berhasil melakukan Verifikasi Klaim/Pengajuan Informasi');
 	}
